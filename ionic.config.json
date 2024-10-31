@@ -1,0 +1,7 @@
+{
+  "name": "RegistrAPPFB",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

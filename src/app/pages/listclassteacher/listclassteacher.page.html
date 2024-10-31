@@ -1,0 +1,36 @@
+<ion-content class="ion-padding" fullscreen>
+  <div class="home-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>LISTA DE CLASES</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-label>
+              <h3 style="color: white;"></h3>
+              <p>Sala:</p>
+              <p>Hora:</p>
+            </ion-label>
+            <ion-button id="modal-trigger"class="qr-button">Generar código QR</ion-button>
+            <ion-modal trigger="modal-trigger" #modal>
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-title style="color: #572364;">Código QR</ion-title>
+                    <ion-buttons slot="end">
+                      <ion-button>Cerrar</ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-content class="ion-padding qr-content">
+                </ion-content>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      <p><a [routerLink]="['/teacher']" style="color: white;">Volver</a></p>
+    </ion-card>
+  </div>
+</ion-content>

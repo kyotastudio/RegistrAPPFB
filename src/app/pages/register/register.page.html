@@ -1,0 +1,39 @@
+<ion-content class="ion-padding" fullscreen>
+  <form>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>REGISTRARSE</ion-card-title>
+        <ion-card-subtitle>Crea una nueva cuenta</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input [(ngModel)]="userData.fullname" name="name" placeholder="Nombre Completo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input [(ngModel)]="userData.email" type="email" name="email" placeholder="Correo Electrónico"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Tipo de Usuario</ion-label>
+          <ion-select [(ngModel)]="userData.typeUser" name="typeUser" placeholder="Selecciona el tipo de usuario">
+            <ion-select-option value="2">Alumno</ion-select-option>
+            <ion-select-option value="3">Profesor</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" (click)="registerUser()">Registrarse</ion-button>
+        <p><a [routerLink]="['/']" style="color: white;">Volver</a></p>
+        @if(error){
+          <div style="color: red;">
+            <p>{{error}}</p>
+          </div>
+        }
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

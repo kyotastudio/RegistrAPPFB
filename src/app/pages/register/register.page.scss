@@ -1,0 +1,87 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #1f2029;
+}
+
+ion-card-header {
+  text-align: center;
+}
+
+ion-card-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #f5f5f5;
+}
+
+ion-card-subtitle {
+  color: #8e8e93;
+}
+
+ion-item {
+  background-color: #1f2029;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  margin-top: 0.5rem;
+}
+
+ion-button {
+  width: 100%;
+  margin-top: 20px;
+  color: white;
+  --background: #572364;
+  --background-activated: #5e6681;
+  --border-radius: 8px;
+}
+
+ion-text {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.input-icon {
+  height: 1em;
+  width: 1em;
+  fill: #572364;
+}
+
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #d3d3d3;
+}
+
+.btn-link {
+  color: #f5f5f5;
+  display: block;
+  font-size: .75em;
+  transition: color .3s ease-out;
+}
+
+.btn-link:hover {
+  color: #ffeba7;
+}
+
+.btn:hover {
+  background-color: #5e6681;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+}
+
+.field input:focus::placeholder {
+  opacity: 0;
+  transition: opacity .3s;
+}
