@@ -1,10 +1,12 @@
 <ion-toolbar>
   <ion-title>
     <ng-container>
-      <div class="user-info">
-        <p>Bienvenido, <!-- <br>{{ username }} --></p><br>
-        <ion-button color="light">Cerrar Sesión</ion-button>
-      </div>
+      @if(user){
+        <div class="welcome">
+          <p>Bienvenido,<br>{{user['fullname']}}<br></p>
+        </div>
+        <ion-button (click)="logout()">Cerrar sesión</ion-button>
+      }
     </ng-container>
     <ng-template #notLoggedIn></ng-template>
   </ion-title>

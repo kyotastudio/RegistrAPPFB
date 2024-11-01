@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, User } from '@angular/fire/auth';
 import { FirestoreService } from './firestore.service';
 import { BehaviorSubject } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Users } from "../models/user.models";
 
 @Injectable({
@@ -12,7 +11,7 @@ export class AuthService {
   private authStateSubject = new BehaviorSubject<any>(null);
   authState$ = this.authStateSubject.asObservable();
 
-  constructor(private afAuth: Auth, private firestoreService: FirestoreService,private firestore: AngularFirestore) {
+  constructor(private afAuth: Auth, private firestoreService: FirestoreService) {
     onAuthStateChanged(this.afAuth, async (user) => {
       if (user) {
         const userData = await this.firestoreService.getUser(user.uid);
@@ -71,14 +70,5 @@ export class AuthService {
         error = 'Error: ' + tipo.message;
     }
     return error;
-  }
-
-  async getUserByEmail(email: string): Promise<Users | null> {
-    const userRef = await this.firestore.collection<Users>('users', ref => ref.where('email', '==', email)).get().toPromise();
-    if (userRef.empty) {
-      return null;
-    } else {
-      return userRef.docs[0].data() as Users;
-    }
   }
 }
