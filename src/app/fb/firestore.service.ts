@@ -1,10 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Users } from '../models/user.models';
-import { Firestore, doc, setDoc, getDoc, collection, getDocs} from '@angular/fire/firestore';
+import {
+  Firestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  collectionData,
+  query,
+  getFirestore
+} from '@angular/fire/firestore';
 import { Classes } from '../models/classes.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirestoreService {
   constructor(private firestore: Firestore) {}
@@ -13,8 +23,7 @@ export class FirestoreService {
     const userDocRef = doc(this.firestore, `Users/${uid}`);
     try {
       await setDoc(userDocRef, userData);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 
   async getUser(uid: string) {
@@ -23,14 +32,28 @@ export class FirestoreService {
     return userDoc.exists() ? userDoc.data() : null;
   }
 
-  async getClasses(): Promise<Classes[]> { // Retorna un Promise con un arreglo de Class
-    const querySnapshot = await getDocs(collection(this.firestore, "Classes"));
-    const classes: Classes[] = []; // Especifica que es un arreglo de Class
 
-    querySnapshot.forEach((doc) => {
-      classes.push({ id: doc.id, ...doc.data() } as Classes); // Asegúrate de que sea del tipo Class
+
+
+  async getAllClasses(): Promise<Classes[]> {
+    const classesCollectionRef = collection(this.firestore, 'Classes'); // Referencia a la colección
+    const classesSnapshot = await getDocs(classesCollectionRef); // Obtener snapshot de la colección
+
+    // Mapear el snapshot a un arreglo de objetos `Classes`
+    return classesSnapshot.docs.map(doc => {
+      const data = doc.data() as Classes;
+      return {
+        id: doc.id, // Asignar el ID manualmente
+        name: data.name,
+        teacher: data.teacher,
+        hour: data.hour,
+        classroom: data.classroom,
+        section: data.section
+      } as Classes;
     });
-
-    return classes; // Retorna las clases obtenidas
   }
+
+
+
 }
+
