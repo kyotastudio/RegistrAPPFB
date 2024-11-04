@@ -2,6 +2,7 @@ import { FirestoreService } from 'src/app/fb/firestore.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/fb/auth.service';
 import { Router } from '@angular/router';
+import { Classes } from 'src/app/models/classes.models';
 
 @Component({
   selector: 'app-listclassstudent',
@@ -9,13 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./listclassstudent.page.scss'],
 })
 export class ListclassstudentPage implements OnInit{
-  classes: any = null;
-  FirestoreService: any;
+  classes: Classes[] = [];
+  constructor(private authService: AuthService, private router: Router,private firestoreService: FirestoreService) { }
 
-  constructor(private authService: AuthService, private router: Router) { }
+
 
   async ngOnInit() {
-    this.classes = await this.FirestoreService.getClasses(); // Llama al método para obtener las clases//-
-    console.log(this.classes); // Imprime las clases en la consola
+    this.classes = await this.firestoreService.getAllClasses(); // Llamada al método
   }
+
 }

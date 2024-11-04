@@ -6,15 +6,22 @@
         <ion-card-title>Clases del día!</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-list>
-          <ion-item *ngFor="let class of classes">
+        <ion-list *ngIf="classes.length > 0; else loading">
+          <ion-item *ngFor="let classItem of classes">
             <ion-label>
-              <h2>{{ class.name }}</h2>
-              <p>ID: {{ class.id }}</p>
-              <p>hola</p>
+              <h2>{{ classItem.name }}</h2>
+              <p>ID: {{ classItem.id }}</p>
+              <p>Aula: {{ classItem.classroom }}</p>
+              <p>Hora: {{ classItem.hour }}</p>
+              <p>Profesor: {{ classItem.teacher }}</p>
+              <p>Sección: {{ classItem.section }}</p>
+              <ion-button slot="end">Registrar Asistencia</ion-button>
             </ion-label>
           </ion-item>
         </ion-list>
+        <ng-template #loading>
+          <p>Cargando clases...</p>
+        </ng-template>
       </ion-card-content>
       <ion-button [routerLink]="['/student']">Volver</ion-button>
     </ion-card>
