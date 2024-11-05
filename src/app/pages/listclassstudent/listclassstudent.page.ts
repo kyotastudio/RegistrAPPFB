@@ -13,8 +13,6 @@ export class ListclassstudentPage implements OnInit{
   classes: Classes[] = [];
   constructor(private authService: AuthService, private router: Router,private firestoreService: FirestoreService) { }
 
-
-
   async ngOnInit() {
     this.classes = await this.firestoreService.getAllClasses(); // Llamada al método
   }
